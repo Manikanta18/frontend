@@ -15,6 +15,7 @@ import EventIcon from '@material-ui/icons/Event'
 import Loading from "./Loading";
 import Gallery from "./components/GalleryPage"
 import Contact from "./components/Contact";
+import EventPage from "./components/EventPage";
 import Grid from "@material-ui/core/Grid";
 
 const styles = {
@@ -78,7 +79,7 @@ class App extends React.Component {
             </Toolbar>
           </AppBar>
           {value === 0 && <Loading />}
-          {value === 1 && <Loading />}
+          {value === 1 && <EventPage />}
           {value === 2 && <Gallery />}
           {value === 3 && <Contact />}
 
