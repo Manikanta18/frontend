@@ -8,13 +8,14 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import vwiFull from "./media/vwiFul.jpeg";
 import PhoneIcon from "@material-ui/icons/Phone";
-import PersonPinIcon from "@material-ui/icons/PersonPin";
+// import PersonPinIcon from "@material-ui/icons/PersonPin";
 import HomeIcon from "@material-ui/icons/Home";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import EventIcon from '@material-ui/icons/Event'
 import Loading from "./Loading";
+import Gallery from "./components/GalleryPage"
 import Contact from "./components/Contact";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 
 const styles = {
   root: {
@@ -29,20 +30,13 @@ const styles = {
   },
   appBar: {
     height: 90,
-    minWidth: 400
-  },
-  footer: {
-    height: 130,
-    top: "auto",
-    bottom: 0
+    width: "100vw"
   },
   image: {
     height: 90,
     width: 275
   },
-  footerText: {
-    color: "white"
-  }
+  
 };
 
 class App extends React.Component {
@@ -77,53 +71,17 @@ class App extends React.Component {
                 centered="true"
               >
                 <Tab label="Home" icon={<HomeIcon />} />
+                <Tab label="Events" icon={<EventIcon />} />
                 <Tab label="Gallery" icon={<FavoriteIcon />} />
-                <Tab label="Alumni" icon={<PersonPinIcon />} />
                 <Tab label="Contact Us" icon={<PhoneIcon />} />
               </Tabs>
             </Toolbar>
           </AppBar>
           {value === 0 && <Loading />}
           {value === 1 && <Loading />}
-          {value === 2 && <Loading />}
+          {value === 2 && <Gallery />}
           {value === 3 && <Contact />}
 
-          <AppBar position="static" color="primary" className={classes.footer}>
-            <Toolbar>
-              <Grid
-                container
-                direction="column"
-                justify="center"
-                alignItems="center"
-              >
-                <Typography
-                  variant="h6"
-                  gutterBottom
-                  className={classes.footerText}
-                  style={{ marginTop: 20 }}
-                >
-                  Vishaka Welding Institute
-                </Typography>
-                <Typography
-                  variant="overline"
-                  gutterBottom
-                  className={classes.footerText}
-                  style={{ marginTop: -15 }}
-                >
-                  +91 9704322233, +91 9154165417
-                </Typography>
-                <Typography
-                  variant="overline"
-                  gutterBottom
-                  className={classes.footerText}
-                  style={{ marginTop: -15 }}
-                >
-                  #27-1-245/9, Srinagar, NH_16, Gajuwaka, Vishakapatnam, A.P,
-                  India 530026
-                </Typography>
-              </Grid>
-            </Toolbar>
-          </AppBar>
         </Grid>
       </div>
     );

@@ -14,21 +14,35 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MessageIcon from "@material-ui/icons/Mail";
 import CallIcon from "@material-ui/icons/Call";
 import Divider from "@material-ui/core/Divider";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 
 const styles = {
   card: {
-    minWidth: 400,
     width: 400,
-    minHeight: 650,
-    height: 650,
-    margin: 100,
+    height: 620,
+    margin: 50,
     padding: 25
   },
   root: {
     backgroundImage: "url(" + imgUrl + ")",
     backgroundSize: "cover",
-    overflow: "hidden"
-  }
+    overflow: "hidden",
+    width: "100vw",
+    height: "100vh",
+    position: "static"
+  },
+  footer: {
+    height: 120,
+    top: "auto",
+    bottom: 0,
+    width: "100vw",
+    left: 0
+
+  },
+  footerText: {
+    color: "white"
+  },
 };
 
 class Contact extends React.Component {
@@ -50,111 +64,149 @@ class Contact extends React.Component {
     const { classes } = this.props;
     return (
       <Grid className={classes.root} container>
-        <Card className={classes.card}>
-          <CardContent>
-            <Typography variant="h4" style={{ color: "#b71c1c" }}>
-              Contact Us
-            </Typography>
-            <br />
-            <Divider />
-            <br />
-            <TextField
-              required
-              margin="dense"
-              id="full name"
-              label="Full Name"
-              type="text"
-              variant="filled"
-              style={{ width: 350, margin: 10 }}
-              value={this.state.name}
-              onChange={this.handleChange("name")}
-              InputLabelProps={{
-                shrink: true
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <AccountCircle />
-                  </InputAdornment>
-                )
-              }}
-            />
-            <br />
-            <br />
-            <TextField
-              required
-              margin="dense"
-              id="email"
-              label="Email"
-              type="text"
-              variant="filled"
-              style={{ width: 350, margin: 10 }}
-              value={this.state.email}
-              onChange={this.handleChange("email")}
-              InputLabelProps={{
-                shrink: true
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <MessageIcon />
-                  </InputAdornment>
-                )
-              }}
-            />
-            <br />
-            <br />
-            <TextField
-              required
-              margin="dense"
-              id="mobile"
-              label="Mobile"
-              type="text"
-              variant="filled"
-              style={{ width: 350, margin: 10 }}
-              value={this.state.mobile}
-              onChange={this.handleChange("mobile")}
-              InputLabelProps={{
-                shrink: true
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <CallIcon />
-                    +91
-                  </InputAdornment>
-                )
-              }}
-            />
-            <br />
-            <br />
-            <TextField
-              required
-              margin="dense"
-              id="query"
-              label="Message"
-              variant="filled"
-              multiline
-              rows="4"
-              style={{ width: 350, margin: 10 }}
-              value={this.state.message}
-              onChange={this.handleChange("message")}
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-          </CardContent>
-          <CardActions>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.sendMsg}
-              style={{ width: 350, margin: 20 }}
-            >
-              Send Message
-            </Button>
-          </CardActions>
-        </Card>
+          <Card className={classes.card}>
+            <CardContent>
+              <Typography variant="h4" style={{ color: "#b71c1c" }}>
+                Contact Us
+              </Typography>
+              <br />
+              <Divider />
+              <br />
+              <TextField
+                required
+                margin="dense"
+                id="full name"
+                label="Full Name"
+                type="text"
+                variant="filled"
+                style={{ width: 350, margin: 10 }}
+                value={this.state.name}
+                onChange={this.handleChange("name")}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  )
+                }}
+              />
+              <br />
+              <br />
+              <TextField
+                required
+                margin="dense"
+                id="email"
+                label="Email"
+                type="text"
+                variant="filled"
+                style={{ width: 350, margin: 10 }}
+                value={this.state.email}
+                onChange={this.handleChange("email")}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <MessageIcon />
+                    </InputAdornment>
+                  )
+                }}
+              />
+              <br />
+              <br />
+              <TextField
+                required
+                margin="dense"
+                id="mobile"
+                label="Mobile"
+                type="text"
+                variant="filled"
+                style={{ width: 350, margin: 10 }}
+                value={this.state.mobile}
+                onChange={this.handleChange("mobile")}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <CallIcon />
+                      +91
+                    </InputAdornment>
+                  )
+                }}
+              />
+              <br />
+              <br />
+              <TextField
+                required
+                margin="dense"
+                id="query"
+                label="Message"
+                variant="filled"
+                multiline
+                rows="4"
+                style={{ width: 350, margin: 10 }}
+                value={this.state.message}
+                onChange={this.handleChange("message")}
+                InputLabelProps={{
+                  shrink: true
+                }}
+              />
+            </CardContent>
+            <CardActions>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.sendMsg}
+                style={{ width: 350, margin: 20, marginTop:0 }}
+              >
+                Send Message
+              </Button>
+            </CardActions>
+          </Card>
+          <div>
+          <AppBar position="fixed" color="primary" className={classes.footer}>
+            <Toolbar>
+              <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="center"
+              >
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  className={classes.footerText}
+                  style={{ marginTop: 20 }}
+                >
+                  Vishaka Welding Institute
+                </Typography>
+                <Typography
+                  variant="overline"
+                  gutterBottom
+                  className={classes.footerText}
+                  style={{ marginTop: -15 }}
+                >
+                  +91 9704322233, +91 9154165417
+                </Typography>
+                <Typography
+                  variant="overline"
+                  gutterBottom
+                  className={classes.footerText}
+                  style={{ marginTop: -15 }}
+                >
+                  #27-1-245/9, Srinagar, NH_16, Gajuwaka, Vishakapatnam, A.P,
+                  India 530026
+                </Typography>
+              </Grid>
+            </Toolbar>
+          </AppBar>
+          </div>
       </Grid>
     );
   }
