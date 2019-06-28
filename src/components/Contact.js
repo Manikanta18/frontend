@@ -22,28 +22,34 @@ const styles = {
     width: 400,
     height: 620,
     margin: 50,
-    padding: 25
+    padding: 25,
+    overflow: "auto"
   },
   root: {
     backgroundImage: "url(" + imgUrl + ")",
     backgroundSize: "cover",
-    overflow: "hidden",
+    overflow: "auto",
     width: "100vw",
     height: "100vh",
-    position: "static"
+    position: "static",
+    display: "flex",
+    minHeight: "100vh",
+    flexDirection: "column",
   },
   footer: {
     height: 120,
     top: "auto",
     bottom: 0,
     width: "100vw",
-    left: 0
+    left: 0,
 
   },
   footerText: {
     color: "white"
   },
 };
+
+
 
 class Contact extends React.Component {
   constructor(props) {
@@ -63,7 +69,7 @@ class Contact extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid className={classes.root} container>
+      <Grid className={classes.root}  container>
           <Card className={classes.card}>
             <CardContent>
               <Typography variant="h4" style={{ color: "#b71c1c" }}>
