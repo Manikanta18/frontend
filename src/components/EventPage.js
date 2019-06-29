@@ -66,18 +66,18 @@ class EventPage extends React.Component {
           numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
           event_time: "DD-MM-YYYY Time"
         },
-        {
-          event_name: "Event Name",
-          Description: `Event Description Lorem ipsum dolor sit amet, consectetur
-          numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
-          event_time: "DD-MM-YYYY Time"
-        },
-        {
-          event_name: "Event Name",
-          Description: `Event Description Lorem ipsum dolor sit amet, consectetur
-          numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
-          event_time: "DD-MM-YYYY Time"
-        }
+        // {
+        //   event_name: "Event Name",
+        //   Description: `Event Description Lorem ipsum dolor sit amet, consectetur
+        //   numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
+        //   event_time: "DD-MM-YYYY Time"
+        // },
+        // {
+        //   event_name: "Event Name",
+        //   Description: `Event Description Lorem ipsum dolor sit amet, consectetur
+        //   numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
+        //   event_time: "DD-MM-YYYY Time"
+        // }
       ]
     };
   }
@@ -107,7 +107,6 @@ class EventPage extends React.Component {
                   marginLeft: 20
                 }}
               >
-                {" "}
                 <CalIcon fontSize="inherit" /> <br />
                 No upcoming Events
               </h2>
