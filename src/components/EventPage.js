@@ -113,7 +113,7 @@ class EventPage extends React.Component {
                     variant="h6"
                     style={{ color: "red", marginTop: 20 }}
                   >
-                    {row.EventDate}
+                    {row.EventDate +" "+ row.EventTime}
                   </Typography>
                 </CardContent>
               </Card>
