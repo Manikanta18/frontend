@@ -49,13 +49,15 @@ class Contact extends React.Component {
       name: null,
       email: null,
       mobile: null,
-      message: null
+      message: null,
+      submitted: false
     };
   }
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
   };
+ 
 
   render() {
     const { classes } = this.props;
@@ -73,100 +75,109 @@ class Contact extends React.Component {
             justify="flex-start"
             alignItems="center"
           >
-            <h1 style={{ color: "#b71c1c" }}>Contact Us</h1>
-            <br />
-            <hr />
-            <TextField
-              required
-              margin="dense"
-              id="full name"
-              label="Full Name"
-              type="text"
-              variant="filled"
-              value={this.state.name}
-              onChange={this.handleChange("name")}
-              InputLabelProps={{
-                shrink: true
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <AccountCircle />
-                  </InputAdornment>
-                )
-              }}
-            />
+             
+            <form
+              action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdc9MTjJzgSpSnWHJHnOJYojqssiKNsJvwGBsFmPheSuIYSPQ/formResponse"
+              method="POST"
+              target="_blank"
+             >
+              <h1 style={{ color: "#b71c1c" }}>Contact Us</h1>
+              <br />
+              <hr />
+              <TextField
+                required
+                margin="dense"
+                id="full name"
+                label="Full Name"
+                type="text"
+                variant="filled"
+                value={this.state.name}
+                onChange={this.handleChange("name")}
+                name="entry.857089627"
+                InputLabelProps={{
+                  shrink: true
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  )
+                }}
+              />
 
-            <TextField
-              required
-              margin="dense"
-              id="email"
-              label="Email"
-              type="text"
-              variant="filled"
-              // style={{ width: 350, margin: 10 }}
-              value={this.state.email}
-              onChange={this.handleChange("email")}
-              InputLabelProps={{
-                shrink: true
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <MessageIcon />
-                  </InputAdornment>
-                )
-              }}
-            />
+              <TextField
+                required
+                margin="dense"
+                id="email"
+                label="Email"
+                type="text"
+                variant="filled"
+                // style={{ width: 350, margin: 10 }}
+                value={this.state.email}
+                name="entry.1087035435"
+                onChange={this.handleChange("email")}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <MessageIcon />
+                    </InputAdornment>
+                  )
+                }}
+              />
 
-            <TextField
-              required
-              margin="dense"
-              id="mobile"
-              label="Mobile"
-              type="text"
-              variant="filled"
-              value={this.state.mobile}
-              onChange={this.handleChange("mobile")}
-              InputLabelProps={{
-                shrink: true
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <CallIcon />
-                  </InputAdornment>
-                )
-              }}
-            />
+              <TextField
+                required
+                margin="dense"
+                id="mobile"
+                label="Mobile"
+                type="text"
+                variant="filled"
+                name="entry.198972150"
+                value={this.state.mobile}
+                onChange={this.handleChange("mobile")}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <CallIcon />
+                    </InputAdornment>
+                  )
+                }}
+              />
 
-            <TextField
-              required
-              margin="dense"
-              id="query"
-              label="Message"
-              variant="filled"
-              multiline
-              rows="3"
-              value={this.state.message}
-              onChange={this.handleChange("message")}
-              InputLabelProps={{
-                shrink: true
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <AIcon />
-                  </InputAdornment>
-                )
-              }}
-            />
-            <br />
-            <Divider variant="inset" />
-            <br />
-            <Button variant="contained" color="primary" onClick={this.sendMsg}>
-              Send Message
-            </Button>
+              <TextField
+                required
+                margin="dense"
+                id="query"
+                label="Message"
+                variant="filled"
+                multiline
+                rows="3"
+                name="entry.1447912070"
+                value={this.state.message}
+                onChange={this.handleChange("message")}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AIcon />
+                    </InputAdornment>
+                  )
+                }}
+              />
+              <br />
+              <Divider variant="inset" />
+              <br />
+             <Button variant="contained" color="primary" className={classes.button}> <input type="submit" value="Send" /></Button>
+            </form>
           </Grid>
         </Paper>
 
@@ -186,8 +197,8 @@ class Contact extends React.Component {
               +91 9704322233, +91 9154165417
             </Typography>
             <Typography variant="overline" gutterBottom>
-              #27-1-245/9, Srinagar, NH_16, Gajuwaka, Vishakapatnam, A.P, India
-              530026
+              #27-1-245/9, Srinagar, NH_16, Gajuwaka, Vishakapatnam, A.P,
+              India 530026
             </Typography>
           </Grid>
         </Paper>

@@ -53,38 +53,22 @@ class EventPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      event_array: [
-        {
-          event_name: "Event Name",
-          Description: `Event Description Lorem ipsum dolor sit amet, consectetur
-        numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
-          event_time: "DD-MM-YYYY Time"
-        },
-        {
-          event_name: "Event Name",
-          Description: `Event Description Lorem ipsum dolor sit amet, consectetur
-          numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
-          event_time: "DD-MM-YYYY Time"
-        },
-        // {
-        //   event_name: "Event Name",
-        //   Description: `Event Description Lorem ipsum dolor sit amet, consectetur
-        //   numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
-        //   event_time: "DD-MM-YYYY Time"
-        // },
-        // {
-        //   event_name: "Event Name",
-        //   Description: `Event Description Lorem ipsum dolor sit amet, consectetur
-        //   numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
-        //   event_time: "DD-MM-YYYY Time"
-        // }
-      ]
+     events_array: [ ]
     };
+  }
+  componentDidMount() {
+    fetch("https://sheetdb.io/api/v1/plsi6vvyd5igm")
+      //fetch("")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ events_array: data });
+      })
+      .catch(console.log);
   }
 
   render() {
     const { classes } = this.props;
-    const { event_array } = this.state;
+    const { events_array } = this.state;
     return (
       <Grid
         className={classes.root}
@@ -98,7 +82,7 @@ class EventPage extends React.Component {
           justify="flex-start"
           alignItems="flex-start"
         >
-          {event_array.length === 0 ? (
+          {events_array.length === 0 ? (
             <Card className={classes.card} style={{padding:50}}>
               <h2
                 style={{
@@ -112,11 +96,11 @@ class EventPage extends React.Component {
               </h2>
             </Card>
           ) : (
-            event_array.map(row => (
+            events_array.map(row => (
               <Card className={classes.card} key={row.id}>
                 <CardContent>
                   <Typography variant="h6" style={{ color: "#1565c0" }}>
-                    {row.event_name}
+                    {row.EventName}
                   </Typography>
                   <Divider variant="inset" />
                   <Typography
@@ -129,7 +113,7 @@ class EventPage extends React.Component {
                     variant="h6"
                     style={{ color: "red", marginTop: 20 }}
                   >
-                    {row.event_time}
+                    {row.EventDate}
                   </Typography>
                 </CardContent>
               </Card>
