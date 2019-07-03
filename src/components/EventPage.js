@@ -23,7 +23,7 @@ const styles = {
   },
   root: {
     backgroundImage: "url(" + imgUrl + ")",
-    backgroundSize: "auto",
+    backgroundSize: "cover",
     // overflow: "auto",
     minWidth: "100vw",
     minHeight: "100vh",

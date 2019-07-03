@@ -13,12 +13,18 @@ import AIcon from "@material-ui/icons/Edit";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import "./styles.css"
+import "./styles.css";
+import Slide from "@material-ui/core/Slide";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
 
 const styles = {
   root: {
     backgroundImage: "url(" + imgUrl + ")",
-    backgroundSize: "auto",
+    backgroundSize: "cover",
     // overflow: "auto",
     minWidth: "100vw",
     minHeight: "100vh",
@@ -42,22 +48,44 @@ const styles = {
   }
 };
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 class Contact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: null,
-      email: null,
+      name: "",
+      email: "",
       mobile: null,
-      message: null,
-      submitted: false
+      message: "",
+      submitted: false,
+      open2: false,
     };
   }
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
   };
- 
+
+  handleOpen2 = () => {
+    const { name, email, mobile, message } = this.state;
+    if (name === "" || email === "" || mobile === 0 || message === "" || mobile === null) {
+    } else {
+      this.setState({ open2: true });
+    }
+  };
+
+  handleClose2 = () => {
+    this.setState({
+      open2: false,
+      name: "",
+      mobile: "",
+      message: "",
+      email: ""
+    });
+  };
 
   render() {
     const { classes } = this.props;
@@ -69,21 +97,21 @@ class Contact extends React.Component {
         justify="space-between"
       >
         <Paper elevation="25" className={classes.ContactPaper}>
-          <Grid
-            container
-            direction="column"
-            justify="flex-start"
-            alignItems="center"
+          <form
+            action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdc9MTjJzgSpSnWHJHnOJYojqssiKNsJvwGBsFmPheSuIYSPQ/formResponse"
+            method="POST"
+            target="_blank"
           >
-             
-            <form
-              action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdc9MTjJzgSpSnWHJHnOJYojqssiKNsJvwGBsFmPheSuIYSPQ/formResponse"
-              method="POST"
-              target="_blank"
-             >
+            <Grid
+              container
+              direction="column"
+              justify="flex-start"
+              alignItems="center"
+            >
               <h1 style={{ color: "#b71c1c" }}>Contact Us</h1>
+
+              <Divider variant="inset" />
               <br />
-              <hr />
               <TextField
                 required
                 margin="dense"
@@ -111,7 +139,7 @@ class Contact extends React.Component {
                 margin="dense"
                 id="email"
                 label="Email"
-                type="text"
+                type="email"
                 variant="filled"
                 // style={{ width: 350, margin: 10 }}
                 value={this.state.email}
@@ -134,7 +162,7 @@ class Contact extends React.Component {
                 margin="dense"
                 id="mobile"
                 label="Mobile"
-                type="text"
+                type="number"
                 variant="filled"
                 name="entry.198972150"
                 value={this.state.mobile}
@@ -176,9 +204,38 @@ class Contact extends React.Component {
               <br />
               <Divider variant="inset" />
               <br />
-             <Button variant="contained" color="primary" className={classes.button}> <input type="submit" value="Send" /></Button>
-            </form>
-          </Grid>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={this.handleOpen2}
+              >
+                <input type="submit" value="Send" />
+              </Button>
+              <Dialog
+                open={this.state.open2}
+                onClose={this.handleClose2}
+                aria-labelledby="alert-dialog-slide-title"
+                aria-describedby="alert-dialog-slide-description"
+                TransitionComponent={Transition}
+                minWidth="sm"
+              >
+                <DialogTitle id="alert-dialog-slide-title">
+                  {"Contact Us"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-slide-description">
+                    {"Thanks for your Message..!"}
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={this.handleClose2} color="primary">
+                    close
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </Grid>
+          </form>
         </Paper>
 
         <Paper elevation="25" className={classes.footerPaper}>
@@ -197,8 +254,8 @@ class Contact extends React.Component {
               +91 9704322233, +91 9154165417
             </Typography>
             <Typography variant="overline" gutterBottom>
-              #27-1-245/9, Srinagar, NH_16, Gajuwaka, Vishakapatnam, A.P,
-              India 530026
+              #27-1-245/9, Srinagar, NH_16, Gajuwaka, Vishakapatnam, A.P, India
+              530026
             </Typography>
           </Grid>
         </Paper>

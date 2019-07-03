@@ -69,6 +69,10 @@ class App extends React.Component {
     this.setState({ open: true });
   };
 
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   setContact = () => {
     this.setState({ open: false, value: 3 });
   };
@@ -143,7 +147,7 @@ class App extends React.Component {
                 </IconButton>
                 <Dialog
                   open={this.state.open}
-                  onClose={this.handleOpen}
+                  onClose={this.handleClose}
                   aria-labelledby="form-dialog-title"
                   TransitionComponent={Transition}
                 >
