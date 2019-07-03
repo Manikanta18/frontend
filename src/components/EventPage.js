@@ -53,9 +53,36 @@ class EventPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-     events_array: [ ]
+      events_array: [],
+      // events_array: [
+      //   {
+      //     EventName: "event1",
+      //     Description: "dsds",
+      //     EventDate: "March 12, 2019",
+      //     EventTime: "ddddd"
+      //   },
+      //   {
+      //     EventName: "event1",
+      //     Description: "dsds",
+      //     EventDate: "June 2, 2019",
+      //     EventTime: "ddddd"
+      //   },
+      //   {
+      //     EventName: "event1",
+      //     Description: "dsds",
+      //     EventDate: "December 23, 2019",
+      //     EventTime: "ddddd"
+      //   },
+      //   {
+      //     EventName: "event1",
+      //     Description: "dsds",
+      //     EventDate: "December 22, 2019",
+      //     EventTime: "ddddd"
+      //   }
+      // ]
     };
   }
+
   componentDidMount() {
     fetch("https://sheetdb.io/api/v1/plsi6vvyd5igm")
       //fetch("")
@@ -64,7 +91,21 @@ class EventPage extends React.Component {
         this.setState({ events_array: data });
       })
       .catch(console.log);
+    this.sort();
   }
+
+  // sorts the event array
+  sort = () => {
+    const { events_array } = this.state;
+
+    events_array.sort(function(a, b) {
+      var dateA = new Date(a.EventDate),
+        dateB = new Date(b.EventDate);
+      return dateA - dateB; //sort by date ascending
+    });
+    this.setState({ events_array });
+  };
+
 
   render() {
     const { classes } = this.props;
@@ -83,7 +124,7 @@ class EventPage extends React.Component {
           alignItems="flex-start"
         >
           {events_array.length === 0 ? (
-            <Card className={classes.card} style={{padding:50}}>
+            <Card className={classes.card} style={{ padding: 50 }}>
               <h2
                 style={{
                   color: "#1565c0",
@@ -113,7 +154,7 @@ class EventPage extends React.Component {
                     variant="h6"
                     style={{ color: "red", marginTop: 20 }}
                   >
-                    {row.EventDate +" "+ row.EventTime}
+                    {row.EventDate + " " + row.EventTime}
                   </Typography>
                 </CardContent>
               </Card>
