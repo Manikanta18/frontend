@@ -98,7 +98,7 @@ class Contact extends React.Component {
       >
         <Paper elevation="25" className={classes.ContactPaper}>
           <form
-            action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdc9MTjJzgSpSnWHJHnOJYojqssiKNsJvwGBsFmPheSuIYSPQ/formResponse"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSdu6RFFKQvG8DN26OjBuUaOOcYXVaCdbRh9I2JESBFBH5yIAA/formResponse"
             method="POST"
             target="_blank"
           >
@@ -121,7 +121,7 @@ class Contact extends React.Component {
                 variant="filled"
                 value={this.state.name}
                 onChange={this.handleChange("name")}
-                name="entry.857089627"
+                name="entry.1883312648"
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -143,7 +143,7 @@ class Contact extends React.Component {
                 variant="filled"
                 // style={{ width: 350, margin: 10 }}
                 value={this.state.email}
-                name="entry.1087035435"
+                name="entry.1922758020"
                 onChange={this.handleChange("email")}
                 InputLabelProps={{
                   shrink: true
@@ -164,7 +164,7 @@ class Contact extends React.Component {
                 label="Mobile"
                 type="number"
                 variant="filled"
-                name="entry.198972150"
+                name="entry.1600189061"
                 value={this.state.mobile}
                 onChange={this.handleChange("mobile")}
                 InputLabelProps={{
@@ -187,7 +187,7 @@ class Contact extends React.Component {
                 variant="filled"
                 multiline
                 rows="3"
-                name="entry.1447912070"
+                name="entry.1614997605"
                 value={this.state.message}
                 onChange={this.handleChange("message")}
                 InputLabelProps={{
