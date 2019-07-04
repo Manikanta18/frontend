@@ -7,7 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import people1 from "../media/people/img_avatar.png";
-import siva_img from "../media/people/siva.jpeg"
+import siva_img from "../media/people/siva.jpeg";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CalIcon from "@material-ui/icons/CalendarToday";
@@ -83,22 +83,43 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      event_array: [
-        {
-          event_name: "Event Name",
-          Description: `Event Description Lorem ipsum dolor sit amet, consectetur
-        numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
-          event_time: "DD-MM-YYYY Time"
-        },
-        {
-          event_name: "Event Name",
-          Description: `Event Description Lorem ipsum dolor sit amet, consectetur
-          numquam dignissimos laborum fugiat deleniti? Eum quasi quidem`,
-          event_time: "DD-MM-YYYY Time"
-        }
-      ]
+      event_array: [],
+      up_array: []
     };
   }
+
+  componentDidMount() {
+    fetch("https://sheetdb.io/api/v1/2pc0pbmat9cnb")
+      //fetch("")
+      .then(res => res.json())
+      .then(data => {
+        data.sort(function(a, b) {
+          var dateA = new Date(a.EventDate),
+            dateB = new Date(b.EventDate);
+          return dateA - dateB; //sort by date ascending
+        });
+        this.setState({ up_array: data });
+        this.updateArray();
+      })
+      .catch(console.log);
+  }
+
+  updateArray = () => {
+    const { event_array, up_array } = this.state;
+    var Today = new Date();
+    var y = Today.getFullYear();
+    var m = Today.getMonth();
+    var d = Today.getDate();
+    var f_day = new Date(y, m, d, 0, 0, 0, 0);
+    console.log(f_day);
+    for (var i = 0; i < up_array.length; i++) {
+      var e_date = new Date(up_array[i].EventDate);
+      if (e_date.valueOf() === f_day.valueOf()) {
+        event_array.push(up_array[i]);
+      }
+    }
+    this.setState({ event_array });
+  };
 
   render() {
     const { classes } = this.props;
@@ -198,22 +219,36 @@ class HomePage extends React.Component {
             <Card elevation="15" className={classes.eventCard}>
               {event_array.length !== 0 ? (
                 <CardContent>
-                  <Typography variant="h6" style={{ color: "#1565c0" }}>
-                    {event_array[0].event_name}
-                  </Typography>
-                  <Divider variant="inset" />
-                  <Typography
-                    variant="body2"
-                    style={{ color: "black", marginTop: 20 }}
+                  <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
                   >
-                    {event_array[0].Description}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    style={{ color: "red", marginTop: 20 }}
-                  >
-                    {event_array[0].event_time}
-                  </Typography>
+                    <Typography variant="h6" style={{ color: "#1565c0" }}>
+                      {event_array[0].EventName}
+                    </Typography>
+                    <Divider variant="inset" />
+                    <Typography
+                      variant="body2"
+                      style={{ color: "black", marginTop: 20 }}
+                    >
+                      {event_array[0].Description}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ color: "red", marginTop: 10 }}
+                    >
+                      {event_array[0].EventDate}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ color: "green", marginTop: 10 }}
+                    >
+                      {event_array[0].EventTime}
+                    </Typography>
+                  </Grid>
+
                   <Divider variant="middle" />
                   <Typography
                     variant="caption"

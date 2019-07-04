@@ -54,6 +54,7 @@ class EventPage extends React.Component {
     super(props);
     this.state = {
       events_array: [],
+      up_array: []
       // events_array: [
       //   {
       //     EventName: "event1",
@@ -84,28 +85,37 @@ class EventPage extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://sheetdb.io/api/v1/plsi6vvyd5igm")
+    fetch("https://sheetdb.io/api/v1/2pc0pbmat9cnb")
       //fetch("")
       .then(res => res.json())
       .then(data => {
-        this.setState({ events_array: data });
+        data.sort(function(a, b) {
+          var dateA = new Date(a.EventDate),
+            dateB = new Date(b.EventDate);
+          return dateA - dateB; //sort by date ascending
+        });
+        this.setState({ up_array: data });
+        this.updateArray();
       })
       .catch(console.log);
-    this.sort();
   }
 
-  // sorts the event array
-  sort = () => {
-    const { events_array } = this.state;
-
-    events_array.sort(function(a, b) {
-      var dateA = new Date(a.EventDate),
-        dateB = new Date(b.EventDate);
-      return dateA - dateB; //sort by date ascending
-    });
+  updateArray = () => {
+    const { events_array, up_array } = this.state;
+    var Today = new Date();
+    var y = Today.getFullYear();
+    var m = Today.getMonth();
+    var d = Today.getDate();
+    var f_day = new Date(y, m, d, 0, 0, 0, 0);
+    console.log(f_day);
+    for (var i = 0; i < up_array.length; i++) {
+      var e_date = new Date(up_array[i].EventDate);
+      if (e_date > Today || e_date.valueOf() === f_day.valueOf()) {
+        events_array.push(up_array[i]);
+      }
+    }
     this.setState({ events_array });
   };
-
 
   render() {
     const { classes } = this.props;
@@ -140,22 +150,36 @@ class EventPage extends React.Component {
             events_array.map(row => (
               <Card className={classes.card} key={row.id}>
                 <CardContent>
-                  <Typography variant="h6" style={{ color: "#1565c0" }}>
-                    {row.EventName}
-                  </Typography>
-                  <Divider variant="inset" />
-                  <Typography
-                    variant="body2"
-                    style={{ color: "black", marginTop: 20 }}
+                  <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
                   >
-                    {row.Description}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    style={{ color: "red", marginTop: 20 }}
-                  >
-                    {row.EventDate + " " + row.EventTime}
-                  </Typography>
+                    <Typography variant="h6" style={{ color: "#1565c0" }}>
+                      {row.EventName}
+                    </Typography>
+                    <Divider variant="inset" />
+                    <Typography
+                      variant="body2"
+                      style={{ color: "black", marginTop: 20 }}
+                    >
+                      {row.Description}
+                    </Typography>
+
+                    <Typography
+                      variant="subtitle1"
+                      style={{ color: "red", marginTop: 10 }}
+                    >
+                      {row.EventDate}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ color: "green", marginTop: 10 }}
+                    >
+                      {row.EventTime}
+                    </Typography>
+                  </Grid>
                 </CardContent>
               </Card>
             ))
