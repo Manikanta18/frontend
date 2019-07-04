@@ -130,8 +130,8 @@ class EventPage extends React.Component {
         <Grid
           container
           direction="row"
-          justify="flex-start"
-          alignItems="flex-start"
+          justify="center"
+          alignItems="center"
         >
           {events_array.length === 0 ? (
             <Card className={classes.card} style={{ padding: 50 }}>
@@ -193,7 +193,21 @@ class EventPage extends React.Component {
             justify="center"
             alignItems="center"
           >
-            <h3 style={{ color: "#0d47a1" }}>Vishaka Welding Institute</h3>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <h3 style={{ color: "#0d47a1" }}>Vishaka Welding Institute</h3>
+              <Typography
+                variant="caption"
+                gutterBottom
+                style={{ color: "#424242", marginLeft: 10 }}
+              >
+                Estd 2013
+              </Typography>
+            </Grid>
             <Typography
               variant="overline"
               gutterBottom

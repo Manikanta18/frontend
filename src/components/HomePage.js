@@ -364,7 +364,21 @@ class HomePage extends React.Component {
             justify="center"
             alignItems="center"
           >
-            <h3 style={{ color: "#0d47a1" }}>Vishaka Welding Institute</h3>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <h3 style={{ color: "#0d47a1" }}>Vishaka Welding Institute</h3>
+              <Typography
+                variant="caption"
+                gutterBottom
+                style={{ color: "#424242", marginLeft: 10 }}
+              >
+                Estd 2013
+              </Typography>
+            </Grid>
             <Typography
               variant="overline"
               gutterBottom
